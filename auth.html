@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local - Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #666;
+            --accent-green: #2B8A3E;
+            --accent-red: #E03131;
+            --border-color: #E5E5E5;
+            --background-light: #F8F9FA;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 0.75rem;
+            --spacing-lg: 1.25rem;
+            --spacing-xl: 1.75rem;
+            --font-size-sm: 0.8125rem;
+            --font-size-md: 0.9375rem;
+            --font-size-lg: 1.0625rem;
+            --font-size-xl: 1.1875rem;
+        }
+
+        body {
+            line-height: 1.5;
+            color: var(--primary-color);
+            font-size: var(--font-size-md);
+            background-color: var(--background-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+            max-width: 100%;
+            padding: var(--spacing-xl);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: var(--font-size-md);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: var(--font-size-md);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-green);
+        }
+
+        .btn-link {
+            background: none;
+            color: var(--accent-green);
+            text-decoration: underline;
+        }
+
+        .btn-link:hover {
+            color: var(--primary-color);
+        }
+
+        .form-footer {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .error-message {
+            color: var(--accent-red);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-xs);
+        }
+
+        .success-message {
+            color: var(--accent-green);
+            font-size: var(--font-size-sm);
+            margin-top: var(--spacing-xs);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="form-container active">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div class="form-footer">
+                <button class="btn btn-link" onclick="showForm('signupForm')">Create an account</button>
+                <button class="btn btn-link" onclick="showForm('resetForm')">Forgot password?</button>
+            </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" class="form-container">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="region">Region</label>
+                    <select id="region" required>
+                        <option value="">Select a region</option>
+                        <option value="Adabraka">Adabraka</option>
+                        <option value="Cantonments">Cantonments</option>
+                        <option value="East Legon">East Legon</option>
+                        <option value="Labadi">Labadi</option>
+                        <option value="Osu">Osu</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <div class="form-footer">
+                <button class="btn btn-link" onclick="showForm('loginForm')">Already have an account? Login</button>
+            </div>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="resetForm" class="form-container">
+            <h2>Reset Password</h2>
+            <form id="reset-form">
+                <div class="form-group">
+                    <label for="reset-email">Email</label>
+                    <input type="email" id="reset-email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Reset Password</button>
+            </form>
+            <div class="form-footer">
+                <button class="btn btn-link" onclick="showForm('loginForm')">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script>
+        // Initialize Notyf
+        const notyf = new Notyf({
+            duration: 3000,
+            position: {x: 'right', y: 'top'},
+        });
+
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTXdfbuiVbaeWQaeQbcasbWkNzjFgLg5c",
+            authDomain: "shop31776-22b02.firebaseapp.com",
+            projectId: "shop31776-22b02",
+            storageBucket: "shop31776-22b02.firebasestorage.app",
+            messagingSenderId: "62180688629",
+            appId: "1:62180688629:web:a4e709beb65027c7937bbc"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Helper function to show forms with animation
+        function showForm(formId) {
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+            document.getElementById(formId).classList.add('active');
+        }
+
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    notyf.success('Login successful!');
+                    setTimeout(() => {
+                        window.location.href = '/index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    notyf.error('Login error: ' + error.message);
+                });
+        });
+
+        // Sign up form submission
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const region = document.getElementById('region').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                notyf.error('Passwords do not match');
+                return;
+            }
+
+            try {
+                // Check if phone number already exists
+                const snapshot = await firebase.database().ref('users').once('value');
+                const users = snapshot.val();
+                if (users) {
+                    const phoneExists = Object.values(users).some(user => user.phone === phone);
+                    if (phoneExists) {
+                        notyf.error('This phone number is already registered');
+                        return;
+                    }
+                }
+
+                // Create user
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                // Save user details to Realtime Database
+                await firebase.database().ref('users/' + user.uid).set({
+                    fullname: fullname,
+                    phone: phone,
+                    email: email,
+                    region: region
+                });
+
+                notyf.success('Sign up successful!');
+                setTimeout(() => {
+                    window.location.href = '/index.html';
+                }, 1500);
+            } catch (error) {
+                notyf.error('Sign up error: ' + error.message);
+            }
+        });
+
+        // Reset password form submission
+        document.getElementById('reset-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('reset-email').value;
+
+            firebase.auth().sendPasswordResetEmail(email)
+                .then(() => {
+                    notyf.success('Password reset email sent!');
+                    setTimeout(() => showForm('loginForm'), 1500);
+                })
+                .catch((error) => {
+                    notyf.error('Password reset error: ' + error.message);
+                });
+        });
+    </script>
+</body>
+</html>
