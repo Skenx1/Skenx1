@@ -216,12 +216,12 @@
 
         .product-title {
             font-weight: 600;
-            font-size: var(--font-size-md);
+            font-size: 15px;
         }
 
         .product-price {
             font-weight: 600;
-            font-size: var(--font-size-lg);
+            font-size: var(--font-size-l);
         }
 
         .rating {
@@ -659,7 +659,7 @@
     <!-- Main content -->
     <main class="container">
         <section class="section-header">
-            <h2 class="animate__animated animate__fadeIn">Best Sellers</h2>
+            
         </section>
 
         <div class="category-filter animate__animated animate__fadeIn" id="categoryFilter">
@@ -1142,7 +1142,6 @@
                                         ${product.originalPrice ? `<span class="original-price">GH₵${product.originalPrice.toFixed(2)}</span>` : ''}
                                         GH₵${product.price.toFixed(2)}
                                     </div>
-                                    <p class="delivery-estimate"><i class="fas fa-clock"></i> Estimated delivery: 3-5 days</p>
                                     <button class="btn btn-primary buy-now-btn"><i class="fas fa-shopping-cart"></i> Buy now</button>
                                 </div>
                             </div>
