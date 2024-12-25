@@ -155,134 +155,38 @@
             margin-bottom: var(--spacing-lg);
         }
 
-        /* Desktop styles remain unchanged */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--spacing-lg);
-}
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
 
-.product-card {
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    padding: var(--spacing-md);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
+        .product-card {
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-.product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
 
-.product-image {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    margin-bottom: var(--spacing-md);
-    transition: transform 0.3s ease;
-}
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: var(--spacing-md);
+            transition: transform 0.3s ease;
+        }
 
-.product-card:hover .product-image {
-    transform: scale(1.05);
-}
-
-/* Mobile styles */
-@media (max-width: 767px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* Force 2 columns */
-        gap: 8px;
-        padding: 8px;
-    }
-
-    .product-card {
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 8px;
-        margin: 0;
-        transition: none;
-        background: white;
-    }
-
-    .product-card:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-    .product-image {
-        width: 100%;
-        aspect-ratio: 1;
-        object-fit: contain;
-        border-radius: 4px;
-        margin-bottom: 6px;
-    }
-
-    .product-card:hover .product-image {
-        transform: none;
-    }
-
-    /* Product title for mobile */
-    .product-title {
-        font-size: 12px;
-        line-height: 1.2;
-        margin: 4px 0;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    /* Price styling for mobile */
-    .product-price {
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .original-price {
-        font-size: 12px;
-        color: #999;
-        text-decoration: line-through;
-        margin-right: 4px;
-    }
-
-    /* Add to cart button for mobile */
-    .add-to-cart-btn {
-        width: 100%;
-        background: #ff6b00;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 8px;
-        font-size: 14px;
-        margin-top: 6px;
-    }
-
-    /* Shipping badge for mobile */
-    .shipping-badge {
-        font-size: 10px;
-        color: white;
-        background: #1a73e8;
-        padding: 2px 6px;
-        border-radius: 4px;
-        display: inline-block;
-        margin-bottom: 4px;
-    }
-
-    /* Discount badge for mobile */
-    .discount-badge {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: #fff3e0;
-        color: #ff6b00;
-        padding: 2px 4px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-weight: 500;
-    }
-}
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
 
         .badge {
             position: absolute;
@@ -345,6 +249,20 @@
 
         .cart-container.active {
             right: 0;
+        }
+
+        .cart-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .cart-item-name {
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
         }
 
         .cart-header {
@@ -592,7 +510,7 @@
             margin-top: 1rem;
         }
 
-        .auth-form p {
+        .auth-form.auth-form p {
             margin-top: 1rem;
             text-align: center;
             font-size: var(--font-size-sm);
@@ -624,115 +542,302 @@
             animation: fadeInUp 0.5s ease forwards;
         }
 
-        .orders-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 2rem;
-            font-size: var(--font-size-sm);
-        }
 
-        .orders-table th,
-        .orders-table td {
-            border: 1px solid var(--border-color);
-            padding: 0.75rem;
-            text-align: left;
-        }
 
-        .orders-table th {
-            background-color: var(--background-light);
-            font-weight: 600;
-        }
+        /* Header styles */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+}
 
-        .orders-table tr:nth-child(even) {
-            background-color: var(--background-light);
-        }
+.search-bar {
+    flex-grow: 1;
+    max-width: 500px;
+    margin: 0 var(--spacing-md);
+}
 
-        .status-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-        }
+.header-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
 
-        .status-processing {
-            background-color: #FFF3BF;
-            color: #B7791F;
-        }
+/* Product grid styles */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+}
 
-        .status-shipped {
-            background-color: #C6F6D5;
-            color: #2F855A;
-        }
+/* Modal styles */
+.modal-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    margin: auto;
+}
 
-        .status-delivered {
-            background-color: #E6FFFA;
-            color: #319795;
-        }
+/* Cart styles */
+.cart-container {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background-color: #fff;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
 
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                align-items: stretch;
-            }
+.cart-container.active {
+    right: 0;
+}
 
-            .search-bar {
-                order: 2;
-                margin: var(--spacing-md) 0;
-                max-width: none;
-            }
+/* Orders section styles */
+#ordersSection {
+    padding: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-            .header-actions {
-                order: 3;
-                justify-content: space-between;
-            }
+.order-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
 
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+.order-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+}
 
-            .modal-content {
-                grid-template-columns: 1fr;
-                padding: var(--spacing-md);
-                gap: var(--spacing-md);
-            }
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-            .cart-container {
-                width: 100%;
-                right: -100%;
-            }
+.order-card h3 {
+    font-size: 18px;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+}
 
-            .orders-table {
-                font-size: var(--font-size-sm);
-            }
+.order-card p {
+    font-size: 14px;
+    margin: var(--spacing-sm) 0;
+    color: var(--text-color);
+}
 
-            .orders-table th,
-            .orders-table td {
-                padding: 0.5rem;
-            }
-        }
+.order-card .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: var(--spacing-md);
+    color: #ffffff;
+}
 
-        @media (max-width: 480px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
+.order-card .status-processing { background-color: #ffa500; }
+.order-card .status-packaging { background-color: #1e90ff; }
+.order-card .status-out-for-delivery { background-color: #32cd32; }
+.order-card .status-shipped { background-color: #4169e1; }
+.order-card .status-delivered { background-color: #228b22; }
 
-            .btn {
-                width: 100%;
-            }
+.order-card .order-items {
+    margin-top: var(--spacing-md);
+    font-size: 14px;
+}
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+.order-card .order-total {
+    font-weight: bold;
+    margin-top: var(--spacing-md);
+    font-size: 16px;
+}
 
-            .orders-table {
-                font-size: var(--font-size-xs);
-            }
+.order-card .view-details-btn {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: var(--spacing-lg);
+}
 
-            .orders-table th,
-            .orders-table td {
-                padding: 0.25rem;
-            }
-        }
+.order-card .view-details-btn:hover {
+    background-color: var(--primary-color-dark);
+}
+
+/* Order details modal styles */
+#orderDetailsModal .modal-content {
+    max-width: 600px;
+    padding: var(--spacing-lg);
+}
+
+#orderDetailsContent {
+    margin-top: var(--spacing-lg);
+}
+
+#orderDetailsContent h3 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+}
+
+#orderDetailsContent ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#orderDetailsContent li {
+    margin-bottom: var(--spacing-sm);
+    font-size: 14px;
+}
+
+#orderDetailsContent p {
+    margin: var(--spacing-sm) 0;
+    font-size: 14px;
+}
+
+#orderDetailsContent .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: var(--spacing-md);
+    color: #ffffff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar {
+        order: 2;
+        margin: var(--spacing-md) 0;
+        max-width: none;
+        width: 100%;
+    }
+
+    .header-actions {
+        order: 3;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .header-actions .btn {
+        flex: 1 1 auto;
+        margin-top: var(--spacing-sm);
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .modal-content {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .cart-container {
+        width: 100%;
+        right: -100%;
+    }
+
+    .order-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .order-card {
+        padding: var(--spacing-md);
+    }
+
+    .order-card h3 {
+        font-size: 16px;
+    }
+
+    .order-card p,
+    .order-card .order-items {
+        font-size: 12px;
+    }
+
+    .order-card .status-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .order-card .order-total {
+        font-size: 14px;
+    }
+
+    .order-card .view-details-btn {
+        font-size: 12px;
+        padding: var(--spacing-sm);
+    }
+
+    #orderDetailsModal .modal-content {
+        padding: var(--spacing-md);
+    }
+
+    #orderDetailsContent h3 {
+        font-size: 16px;
+    }
+
+    #orderDetailsContent li,
+    #orderDetailsContent p {
+        font-size: 12px;
+    }
+
+    #orderDetailsContent .status-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-actions {
+        flex-direction: column;
+    }
+
+    .header-actions .btn {
+        width: 100%;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -782,6 +887,7 @@
                 <h2 id="modalTitle"></h2>
                 <p class="product-price" id="modalPrice"></p>
                 <p id="modalDescription"></p>
+                <p id="modalShippingFee"></p>
                 <div class="quantity-controls">
                     <button class="quantity-btn" id="decreaseQuantity"><i class="fas fa-minus"></i></button>
                     <span id="quantity">1</span>
@@ -801,12 +907,30 @@
         <div class="cart-items" id="cartItems">
             <!-- Cart items will be dynamically inserted here -->
         </div>
-        <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotal">GH₵0.00</span>
-        </div>
-        <div class="delivery-info">
-            <p><i class="fas fa-truck"></i> Free delivery in Accra only</p>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">GH₵0.00</span>
+            </div>
+            <div class="delivery-info">
+                <p><i class="fas fa-truck"></i> Delivery Options:</p>
+                <div>
+                    <input type="radio" id="regularDelivery" name="deliveryOption" value="regular" checked>
+                    <label for="regularDelivery">Regular Delivery (Free)</label>
+                </div>
+                <div>
+                    <input type="radio" id="expressDelivery" name="deliveryOption" value="express">
+                    <label for="expressDelivery">Express Delivery (GH₵20.00)</label>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>Shipping:</span>
+                <span id="cartShipping">GH₵0.00</span>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">GH₵0.00</span>
+            </div>
         </div>
         <div class="checkout-form">
             <div class="form-group">
@@ -833,12 +957,13 @@
                     <!-- Add more areas as needed -->
                 </select>
             </div>
-            <button class="btn btn-primary" id="checkoutBtn"><i class="fas fa-check"></i> Checkout</button>
+            <button class="btn btn-primary" id="checkoutBtn"><i class="fas fa-check"></i> Pay with Paystack</button>
         </div>
     </div>
 
     <!-- Login Form -->
     <div id="loginForm" class="auth-form">
+        <button class="btn btn-outline back-btn" id="backFromLogin"><i class="fas fa-arrow-left"></i> Back</button>
         <h2>Welcome Back</h2>
         <form id="login-form">
             <div class="form-group">
@@ -857,6 +982,7 @@
 
     <!-- Signup Form -->
     <div id="signupForm" class="auth-form">
+        <button class="btn btn-outline back-btn" id="backFromSignup"><i class="fas fa-arrow-left"></i> Back</button>
         <h2>Create an Account</h2>
         <form id="signup-form">
             <div class="form-group">
@@ -902,6 +1028,7 @@
 
     <!-- Reset Password Form -->
     <div id="resetPasswordForm" class="auth-form">
+        <button class="btn btn-outline back-btn" id="backFromReset"><i class="fas fa-arrow-left"></i> Back</button>
         <h2>Reset Password</h2>
         <form id="reset-password-form">
             <div class="form-group">
@@ -915,6 +1042,7 @@
 
     <!-- Account Details -->
     <div id="accountDetails" class="auth-form">
+        <button class="btn btn-outline back-btn" id="backFromAccount"><i class="fas fa-arrow-left"></i> Back</button>
         <h2>Account Details</h2>
         <p><strong>Name:</strong> <span id="accountName"></span></p>
         <p><strong>Email:</strong> <span id="accountEmail"></span></p>
@@ -923,24 +1051,25 @@
         <button class="btn btn-primary" id="logoutBtn">Logout</button>
     </div>
 
-    <!-- Orders Table -->
-    <div id="ordersTable" class="container" style="display: none;">
-        <h2>Your Orders</h2>
-        <table class="orders-table">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Date</th>
-                    <th>Products</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="ordersTableBody">
-                <!-- Order rows will be dynamically inserted here -->
-            </tbody>
-        </table>
+    <!-- Orders Section -->
+<div id="ordersSection" class="container" style="display: none;">
+    <button class="btn btn-outline back-btn" id="backFromOrders"><i class="fas fa-arrow-left"></i> Back</button>
+    <h2>Your Orders</h2>
+    <div id="orderCards" class="order-cards">
+        <!-- Order cards will be dynamically inserted here -->
     </div>
+</div>
+
+<!-- Order Details Modal -->
+<div id="orderDetailsModal" class="modal">
+    <div class="modal-content animate__animated animate__zoomIn">
+        <span class="close-modal" id="closeOrderDetails">&times;</span>
+        <h2>Order Details</h2>
+        <div id="orderDetailsContent">
+            <!-- Order details will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -975,6 +1104,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
         // Initialize Notyf
         const notyf = new Notyf({
@@ -994,7 +1124,7 @@
 
         firebase.initializeApp(firebaseConfig);
 
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentCategory = 'all';
         let displayedProducts = 4;
         let currentUser = null;
@@ -1238,6 +1368,7 @@
                                         ${product.originalPrice ? `<span class="original-price">GH₵${product.originalPrice.toFixed(2)}</span>` : ''}
                                         GH₵${product.price.toFixed(2)}
                                     </div>
+                                    <p>Shipping: GH₵${product.shippingFee.toFixed(2)}</p>
                                     <button class="btn btn-primary buy-now-btn"><i class="fas fa-shopping-cart"></i> Buy now</button>
                                 </div>
                             </div>
@@ -1295,6 +1426,7 @@
                     document.getElementById('modalTitle').textContent = product.name;
                     document.getElementById('modalPrice').textContent = `GH₵${product.price.toFixed(2)}`;
                     document.getElementById('modalDescription').textContent = product.description;
+                    document.getElementById('modalShippingFee').textContent = `Shipping: GH₵${product.shippingFee.toFixed(2)}`;
                     modal.classList.add('active');
                     addToCartBtn.dataset.productId = productId;
                 }
@@ -1332,10 +1464,11 @@
                         cart.push({ ...product, id: productId, quantity });
                     }
                     updateCart();
+                    localStorage.setItem('cart', JSON.stringify(cart));
                     modal.classList.remove('active');
                     quantity = 1;
                     document.getElementById('quantity').textContent = quantity;
-                    notyf.success(`${product.name} added to cart! Estimated delivery: 3-5 days`);
+                    notyf.success(`${product.name} added to cart!`);
                 }
             });
         });
@@ -1343,6 +1476,8 @@
         // Update cart
         function updateCart() {
             const cartItems = document.getElementById('cartItems');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartShipping = document.getElementById('cartShipping');
             const cartTotal = document.getElementById('cartTotal');
             const cartBtn = document.getElementById('cartBtn');
 
@@ -1352,12 +1487,20 @@
                     <div>
                         <h3>${item.name}</h3>
                         <p>GH₵${item.price.toFixed(2)} x ${item.quantity}</p>
+                        <p>Shipping: GH₵${(item.shippingFee * item.quantity).toFixed(2)}</p>
                     </div>
                     <button class="btn btn-outline remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
                 </div>
             `).join('');
 
-            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const shippingTotal = cart.reduce((sum, item) => sum + item.shippingFee * item.quantity, 0);
+            const deliveryOption = document.querySelector('input[name="deliveryOption"]:checked').value;
+            const expressDeliveryFee = deliveryOption === 'express' ? 20 : 0;
+            const total = subtotal + shippingTotal + expressDeliveryFee;
+
+            cartSubtotal.textContent = `GH₵${subtotal.toFixed(2)}`;
+            cartShipping.textContent = `GH₵${shippingTotal.toFixed(2)}`;
             cartTotal.textContent = `GH₵${total.toFixed(2)}`;
             cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${cart.length})`;
 
@@ -1367,6 +1510,7 @@
                     const id = e.target.closest('.remove-item').dataset.id;
                     cart = cart.filter(item => item.id !== id);
                     updateCart();
+                    localStorage.setItem('cart', JSON.stringify(cart));
                     notyf.success('Product removed from cart!');
                 });
             });
@@ -1387,6 +1531,11 @@
             cartContainer.classList.remove('animate__animated', 'animate__slideInRight');
         });
 
+        // Delivery option change
+        document.querySelectorAll('input[name="deliveryOption"]').forEach(radio => {
+            radio.addEventListener('change', updateCart);
+        });
+
         // Load more functionality
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         loadMoreBtn.addEventListener('click', () => {
@@ -1397,7 +1546,7 @@
             }
         });
 
-        // Checkout functionality
+        // Checkout functionality with Paystack integration
         const checkoutBtn = document.getElementById('checkoutBtn');
         checkoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1411,63 +1560,188 @@
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const area = document.getElementById('area').value;
+            const deliveryOption = document.querySelector('input[name="deliveryOption"]:checked').value;
 
             if (name && email && phone && area) {
-                // Save order to Firebase
-                const ordersRef = firebase.database().ref('orders');
-                const newOrderRef = ordersRef.push();
-                newOrderRef.set({
-                    userId: currentUser.uid,
-                    name: name,
+                // Calculate totals
+                const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                const shippingTotal = cart.reduce((sum, item) => sum + item.shippingFee * item.quantity, 0);
+                const expressDeliveryFee = deliveryOption === 'express' ? 20 : 0;
+                const total = subtotal + shippingTotal + expressDeliveryFee;
+
+                // Paystack payment integration
+                const handler = PaystackPop.setup({
+                    key: 'pk_test_465904782c379e7b5eb53646745fec92442a3af4', // Replace with your actual Paystack public key
                     email: email,
-                    phone: phone,
-                    area: area,
-                    items: cart,
-                    total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-                    timestamp: firebase.database.ServerValue.TIMESTAMP,
-                    status: 'Processing'
-                }).then(() => {
-                    notyf.success('Order placed successfully! Your items will be shipped from our suppliers within 1-2 business days.');
-                    cart = [];
-                    updateCart();
-                    cartContainer.classList.remove('active');
-                }).catch((error) => {
-                    notyf.error('Error placing order: ' + error.message);
+                    amount: total * 100, // Amount in kobo
+                    currency: 'GHS',
+                    ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+                    callback: function(response) {
+                        // Save order to Firebase
+                        const ordersRef = firebase.database().ref('orders');
+                        const newOrderRef = ordersRef.push();
+                        newOrderRef.set({
+                            userId: currentUser.uid,
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            area: area,
+                            items: cart,
+                            subtotal: subtotal,
+                            shippingTotal: shippingTotal,
+                            expressDeliveryFee: expressDeliveryFee,
+                            total: total,
+                            deliveryOption: deliveryOption,
+                            timestamp: firebase.database.ServerValue.TIMESTAMP,
+                            status: 'Processing',
+                            paymentReference: response.reference
+                        }).then(() => {
+                            notyf.success('Order placed successfully! Your items will be shipped from our suppliers within 1-2 business days.');
+                            cart = [];
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            updateCart();
+                            cartContainer.classList.remove('active');
+                        }).catch((error) => {
+                            notyf.error('Error placing order: ' + error.message);
+                        });
+                    },
+                    onClose: function() {
+                        notyf.error('Payment cancelled. Please try again.');
+                    }
                 });
+                handler.openIframe();
             } else {
                 notyf.error('Please fill in all fields before checking out.');
             }
         });
 
         // Render orders
-        function renderOrders() {
-            const ordersTableBody = document.getElementById('ordersTableBody');
-            firebase.database().ref('orders').orderByChild('userId').equalTo(currentUser.uid).once('value')
-                .then((snapshot) => {
-                    let ordersHtml = '';
-                    snapshot.forEach((childSnapshot) => {
-                        const order = childSnapshot.val();
-                        const orderDate = new Date(order.timestamp);
-                        const formattedDate = orderDate.toLocaleDateString() + ' ' + orderDate.toLocaleTimeString();
-                        const productsHtml = order.items.map(item => `${item.name} (x${item.quantity})`).join(', ');
-                        
-                        ordersHtml += `
-                            <tr>
-                                <td>${childSnapshot.key}</td>
-                                <td>${formattedDate}</td>
-                                <td>${productsHtml}</td>
-                                <td>GH₵${order.total.toFixed(2)}</td>
-                                <td><span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span></td>
-                            </tr>
-                        `;
-                    });
-                    ordersTableBody.innerHTML = ordersHtml;
-                })
-                .catch((error) => {
-                    console.error('Error fetching orders:', error);
-                    notyf.error('Error fetching orders. Please try again later.');
+function renderOrders() {
+    const orderCards = document.getElementById('orderCards');
+    firebase.database().ref('orders').orderByChild('userId').equalTo(currentUser.uid).once('value')
+        .then((snapshot) => {
+            let orders = [];
+            snapshot.forEach((childSnapshot) => {
+                orders.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
                 });
-        }
+            });
+
+            // Sort orders by timestamp in descending order (newest first)
+            orders.sort((a, b) => b.timestamp - a.timestamp);
+
+            let ordersHtml = '';
+            orders.forEach((order) => {
+                const orderDate = new Date(order.timestamp);
+                const formattedDate = orderDate.toLocaleDateString() + ' ' + orderDate.toLocaleTimeString();
+                const itemsPreview = order.items.slice(0, 2).map(item => `${item.name} (x${item.quantity})`).join(', ');
+                const itemsCount = order.items.length > 2 ? ` and ${order.items.length - 2} more` : '';
+                
+                ordersHtml += `
+                    <div class="order-card animate__animated animate__fadeIn">
+                        <h3>Order #${order.id.slice(-5)}</h3>
+                        <p><strong>Date:</strong> ${formattedDate}</p>
+                        <p><strong>Items:</strong> ${itemsPreview}${itemsCount}</p>
+                        <p class="order-total"><strong>Total:</strong> GH₵${order.total.toFixed(2)}</p>
+                        <span class="status-badge status-${order.status.toLowerCase().replace(/\s+/g, '-')}">${order.status}</span>
+                        <button class="view-details-btn" data-order-id="${order.id}">View Details</button>
+                    </div>
+                `;
+            });
+            orderCards.innerHTML = ordersHtml;
+
+            // Add click event listeners to view details buttons
+            document.querySelectorAll('.view-details-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const orderId = e.target.dataset.orderId;
+                    showOrderDetails(orderId);
+                });
+            });
+        })
+        .catch((error) => {
+            console.error('Error fetching orders:', error);
+            notyf.error('Error fetching orders. Please try again later.');
+        });
+}
+
+// Show order details
+function showOrderDetails(orderId) {
+    firebase.database().ref('orders/' + orderId).once('value')
+        .then((snapshot) => {
+            const order = snapshot.val();
+            const orderDate = new Date(order.timestamp);
+            const formattedDate = orderDate.toLocaleDateString() + ' ' + orderDate.toLocaleTimeString();
+
+            let detailsHtml = `
+                <h3>Order #${orderId.slice(-5)}</h3>
+                <p><strong>Date:</strong> ${formattedDate}</p>
+                <p><strong>Status:</strong> <span class="status-badge status-${order.status.toLowerCase().replace(/\s+/g, '-')}">${order.status}</span></p>
+                <h3>Items:</h3>
+                <ul>
+                    ${order.items.map(item => `
+                        <li>${item.name} (x${item.quantity}) - GH₵${(item.price * item.quantity).toFixed(2)}</li>
+                    `).join('')}
+                </ul>
+                <h3>Summary:</h3>
+                <p><strong>Subtotal:</strong> GH₵${order.subtotal.toFixed(2)}</p>
+                <p><strong>Shipping:</strong> GH₵${order.shippingTotal.toFixed(2)}</p>
+                <p><strong>Express Delivery Fee:</strong> GH₵${order.expressDeliveryFee.toFixed(2)}</p>
+                <p><strong>Total:</strong> GH₵${order.total.toFixed(2)}</p>
+                <h3>Delivery Information:</h3>
+                <p><strong>Name:</strong> ${order.name}</p>
+                <p><strong>Email:</strong> ${order.email}</p>
+                <p><strong>Phone:</strong> ${order.phone}</p>
+                <p><strong>Area:</strong> ${order.area}</p>
+                <p><strong>Delivery Option:</strong> ${order.deliveryOption}</p>
+            `;
+
+            document.getElementById('orderDetailsContent').innerHTML = detailsHtml;
+            document.getElementById('orderDetailsModal').classList.add('active');
+        })
+        .catch((error) => {
+            console.error('Error fetching order details:', error);
+            notyf.error('Error fetching order details. Please try again later.');
+        });
+}
+
+// Close order details modal
+document.getElementById('closeOrderDetails').addEventListener('click', () => {
+    document.getElementById('orderDetailsModal').classList.remove('active');
+});
+
+// Show orders section
+function showOrdersSection() {
+    document.querySelector('main').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('resetPasswordForm').style.display = 'none';
+    document.getElementById('accountDetails').style.display = 'none';
+    document.getElementById('ordersSection').style.display = 'block';
+    
+    renderOrders();
+}
+
+// Update the existing event listener for the orders button
+document.getElementById('ordersBtn').addEventListener('click', () => {
+    if (currentUser) {
+        showOrdersSection();
+    } else {
+        notyf.error('Please log in to view your orders.');
+        showLoginForm();
+    }
+});
+
+// Back button functionality
+document.getElementById('backFromOrders').addEventListener('click', showMainContent);
+
+
+        // Back button functionality
+        document.getElementById('backFromLogin').addEventListener('click', showMainContent);
+        document.getElementById('backFromSignup').addEventListener('click', showMainContent);
+        document.getElementById('backFromReset').addEventListener('click', showMainContent);
+        document.getElementById('backFromAccount').addEventListener('click', showMainContent);
+        document.getElementById('backFromOrders').addEventListener('click', showMainContent);
 
         // Initialize
         firebase.auth().onAuthStateChanged((user) => {
@@ -1478,6 +1752,7 @@
 
         renderCategories();
         renderProducts();
+        updateCart();
     </script>
 </body>
 </html>
